@@ -10,5 +10,8 @@ class Data(BaseModel):
 
 @app.post("/detect")
 def detect(X:Data):
-	print(X)
-	return {"result": "Hello World"}
+	# drop extra columns
+	# sort columns
+	
+	print(len(X.columns))
+	return {"result": ["Hello World"]}
