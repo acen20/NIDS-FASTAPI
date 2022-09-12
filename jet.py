@@ -95,5 +95,7 @@ def predict(data, models, clf, objects, n_features):
 	
 	## Infer
 	pred = clf(X).cpu().detach()
+	pred = torch.argmax(pred).numpy()
+	pred = objects['labelencoder'].inverse_transform([pred])
 	print(pred)
-	pred = objects['labelencoder'].inverse_transform(pred)
+	return pred
