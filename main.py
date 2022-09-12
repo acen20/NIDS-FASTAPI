@@ -17,6 +17,5 @@ class Data(BaseModel):
 
 @app.post("/detect")
 def detect(data: Data):
-	print(data)
 	result = jet.predict(data, models, clf, objects, NUM_FEATURES)
-	return {"result": ["Hello World"]}
+	return {"result": result}

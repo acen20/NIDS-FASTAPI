@@ -27,7 +27,7 @@ def load_objects():
 def load_wings_weights(NUM_FEATURES, NUM_CLASSES, device):
 	## Load wings weights
 	lstm = LSTM(input_size=NUM_FEATURES,hidden_size=128,num_layers=2,
-			  num_classes=NUM_CLASSES, dropout=0).to(device)
+			  num_classes=NUM_CLASSES, dropout=0, device=device).to(device)
 	lstm.load_state_dict(torch.load('models/LSTM.pt'))
 
 	cnn = CNN(in_channels=1,out_channels=3,hidden_size=64,
@@ -85,11 +85,10 @@ def get_predictor(device):
 
 def predict(data, models, clf, objects, n_features):
 	## rearrange input features and scale data
-	print(data)
 	X = preprocess_data(data.data, data.columns, objects)
 	
 	## Convert to tensor
-	X = torch.tensor(X)
+	X = torch.tensor(X, dtype=torch.float)
 	
 	## Create Meta
 	X = create_meta(X, models, n_features=n_features)
@@ -97,4 +96,4 @@ def predict(data, models, clf, objects, n_features):
 	## Infer
 	pred = clf(X).cpu().detach()
 	print(pred)
-	pred = enc.inverse_transform()
+	pred = objects['labelencoder'].inverse_transform(pred)
