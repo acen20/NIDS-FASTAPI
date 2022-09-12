@@ -1,17 +1,22 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import torch
+
+# model pipeline
+import jet
 
 app = FastAPI()
 
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+models, clf, objects, NUM_FEATURES = jet.get_predictor(device)
 
 class Data(BaseModel):
-	columns: list
-	data: list
+	columns:list
+	data:list[list]
 
 @app.post("/detect")
-def detect(X:Data):
-	# drop extra columns
-	# sort columns
-	
-	print(len(X.columns))
+def detect(data: Data):
+	print(data)
+	result = jet.predict(data, models, clf, objects, NUM_FEATURES)
 	return {"result": ["Hello World"]}

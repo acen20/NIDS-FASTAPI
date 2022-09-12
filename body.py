@@ -6,7 +6,7 @@ def create_meta(X, models, n_features):
 	for model in models:
 		with torch.no_grad():
 			# Linear models get 1D data
-			if model.layer1._get_name() == 'Linear':
+			if next(iter(model.modules()))._get_name() == 'Linear':
 				X_meta.append(model.get_features(X))
 			else:
 				X_meta.append(model.get_features(X.reshape(-1,1,n_features)))
