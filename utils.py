@@ -21,7 +21,6 @@ def preprocess_data(X, columns, objects):
 	"fwd_act_data_pkts", "fwd_seg_size_min", "active_mean", "active_std",
 	"active_max", "active_min", "idle_mean", "idle_std", "idle_max", "idle_min"])
 	
-	print(f"ORIGINAL LENGTH: {len(original_column_order)}")
 	
 	#rearrange columns to match model"s input sequence
 	df = pd.DataFrame(X, columns = columns)
