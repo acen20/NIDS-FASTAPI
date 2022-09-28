@@ -30,10 +30,10 @@ def load_wings_weights(NUM_FEATURES, NUM_CLASSES, device):
 			  num_classes=NUM_CLASSES, dropout=0, device=device).to(device)
 	lstm.load_state_dict(torch.load('models/LSTM.pt'))
 
-	cnn = CNN(in_channels=1,out_channels=3,hidden_size=64,
-			input_size=NUM_FEATURES,num_classes=NUM_CLASSES,kernel_size=5,
-			dropout=0.1).to(device)
-	cnn.load_state_dict(torch.load('models/CNN.pt'))
+	cnn = CNN(in_channels=1,out_channels=1,hidden_size=64,
+			input_size=NUM_FEATURES,num_classes=NUM_CLASSES,kernel_size=3,
+			dropout=0.2).to(device)
+	cnn.load_state_dict(torch.load('models/CNN2.pt'))
 	return lstm, cnn
 
 
@@ -47,7 +47,7 @@ def load_tail_weights(NUM_FEATURES, NUM_CLASSES, device):
 def load_nose_weights(NUM_FEATURES, NUM_CLASSES, device):
 	## Load MLP weights
 	mlp = nMLP(520, 128, NUM_CLASSES, 0)
-	mlp.load_state_dict(torch.load('models/DEEP_ENSEMBLE.pt'))
+	mlp.load_state_dict(torch.load('models/FINAL_DEEP_ENSEMBLE.pt'))
 	return mlp
 	
 
