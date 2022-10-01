@@ -46,7 +46,7 @@ def load_tail_weights(NUM_FEATURES, NUM_CLASSES, device):
 	
 def load_nose_weights(NUM_FEATURES, NUM_CLASSES, device):
 	## Load MLP weights
-	mlp = nMLP(520, 128, NUM_CLASSES, 0)
+	mlp = nMLP(520, 64, NUM_CLASSES, 0)
 	mlp.load_state_dict(torch.load('models/DEEP_ENSEMBLE.pt'))
 	return mlp
 	
