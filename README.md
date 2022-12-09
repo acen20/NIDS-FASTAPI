@@ -7,7 +7,7 @@
 3. <b>Body</b> > Non-Linear PCA
 4. <b>Nose</b> > MLP
 
-<img width="450em" src="media/JetArchitecture.jpg"/>
+<img width="450em" src="docs/JetArchitecture.jpg"/>
 
 ## Architectural details
 
